@@ -1,3 +1,5 @@
+[![](https://raw.githubusercontent.com/regions-of-indonesia/regions-of-indonesia/main/public/Cover.png?sanitize=true)](https://regions-of-indonesia.netlify.app)
+
 <p align="center">
   <a href="http://www.npmjs.com/package/@regions-of-indonesia/swr"><img src="https://img.shields.io/npm/v/@regions-of-indonesia/swr" /></a>
   <a href="https://bundlephobia.com/package/@regions-of-indonesia/swr"><img src="https://img.shields.io/bundlephobia/minzip/@regions-of-indonesia/swr" /></a>
