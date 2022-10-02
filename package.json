@@ -3,25 +3,21 @@
   "version": "1.0.0",
   "description": "Regions of Indonesia SWR",
   "main": "./dist/index.js",
-  "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
+  "module": "./dist/index.modern.mjs",
   "exports": {
-    ".": {
-      "types": "./dist/index.d.ts",
-      "require": "./dist/index.js",
-      "import": "./dist/index.mjs",
-      "default": "./dist/index.js"
-    }
+    "require": "./dist/index.js",
+    "default": "./dist/index.modern.mjs"
   },
   "files": [
     "dist"
   ],
   "scripts": {
-    "test:dev": "vitest --ui",
-    "test:prod": "vitest run",
-    "test": "yarn run test:prod",
-    "build": "rimraf dist && microbundle src/index.ts --format esm,cjs --sourcemap false --external react,swr,@regions-of-indonesia/client",
-    "release": "release-it"
+    "test": "vitest run",
+    "test-ui": "vitest --ui",
+    "build": "microbundle src/index.ts --format modern,cjs --sourcemap false",
+    "prerelease": "yarn run test && yarn run build",
+    "release": "release-it --only-version"
   },
   "repository": "https://github.com/regions-of-indonesia/swr.git",
   "author": "flamrdevs <flamrdevs@gmail.com>",
@@ -35,12 +31,11 @@
   "devDependencies": {
     "@types/react": "^18.0.21",
     "@vitest/ui": "^0.23.2",
+    "javascript-yesterday": "^1.2.0",
     "jsdom": "^20.0.0",
     "microbundle": "^0.15.1",
     "node-fetch": "^3.2.10",
     "release-it": "^15.4.2",
-    "rimraf": "^3.0.2",
-    "typescript": "^4.8.3",
     "vitest": "^0.23.2"
   }
 }

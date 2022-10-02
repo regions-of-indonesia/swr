@@ -1,15 +1,15 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
     "module": "ESNext",
-    "outDir": "./dist",
-    "removeComments": true,
-    "moduleResolution": "Node",
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
+    "target": "ESNext",
+    "moduleResolution": "node",
+    "isolatedModules": true,
     "noUnusedLocals": true,
-    "noUnusedParameters": true
-  },
-  "include": ["src"],
-  "exclude": ["node_modules", "dist"]
+    "noUnusedParameters": true,
+    "allowSyntheticDefaultImports": true,
+    "removeComments": true,
+    "jsx": "react",
+    "jsxFactory": "React.createElement",
+    "jsxFragmentFactory": "React.Fragment"
+  }
 }
