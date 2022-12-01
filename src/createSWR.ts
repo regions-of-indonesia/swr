@@ -2,12 +2,8 @@ import { RegionsOfIndonesiaClient } from "@regions-of-indonesia/client";
 
 import useSWR from "swr";
 
-function isNotEmptyString(value: unknown): value is string {
-  return typeof value === "string" && value !== "";
-}
-
-function createCallbackIfNotEmptyStringOrNull<T>(value: unknown, callback: (value: string) => T) {
-  return () => (isNotEmptyString(value) ? callback(value) : null);
+function getValidKey<T>(value: unknown, callback: (value: string) => T) {
+  return () => (typeof value === "string" && value !== "" ? callback(value) : null);
 }
 
 function createSWR(client: RegionsOfIndonesiaClient = new RegionsOfIndonesiaClient()) {
@@ -29,20 +25,20 @@ function createSWR(client: RegionsOfIndonesiaClient = new RegionsOfIndonesiaClie
   };
 
   const fetcher = {
-    provinces: async () => await client.province.find(),
-    province: async (_path: string, code: string) => await client.province.findByCode(code),
-    districts: async (_path: string, provinceCode: string) => await client.district.findByProvinceCode(provinceCode),
-    district: async (_path: string, code: string) => await client.district.findByCode(code),
-    subdistricts: async (_path: string, districtCode: string) => await client.subdistrict.findByDistrictCode(districtCode),
-    subdistrict: async (_path: string, code: string) => await client.subdistrict.findByCode(code),
-    villages: async (_path: string, subdistrictCode: string) => await client.village.findBySubdistrictCode(subdistrictCode),
-    village: async (_path: string, code: string) => await client.village.findByCode(code),
+    provinces: () => client.province.find(),
+    province: (_path: string, code: string) => client.province.findByCode(code),
+    districts: (_path: string, provinceCode: string) => client.district.findByProvinceCode(provinceCode),
+    district: (_path: string, code: string) => client.district.findByCode(code),
+    subdistricts: (_path: string, districtCode: string) => client.subdistrict.findByDistrictCode(districtCode),
+    subdistrict: (_path: string, code: string) => client.subdistrict.findByCode(code),
+    villages: (_path: string, subdistrictCode: string) => client.village.findBySubdistrictCode(subdistrictCode),
+    village: (_path: string, code: string) => client.village.findByCode(code),
 
-    search: async (_path: string, text: string) => await client.search(text),
-    searchProvinces: async (_path: string, text: string) => await client.province.search(text),
-    searchDistricts: async (_path: string, text: string) => await client.district.search(text),
-    searchSubdistricts: async (_path: string, text: string) => await client.subdistrict.search(text),
-    searchVillages: async (_path: string, text: string) => await client.village.search(text),
+    search: (_path: string, text: string) => client.search(text),
+    searchProvinces: (_path: string, text: string) => client.province.search(text),
+    searchDistricts: (_path: string, text: string) => client.district.search(text),
+    searchSubdistricts: (_path: string, text: string) => client.subdistrict.search(text),
+    searchVillages: (_path: string, text: string) => client.village.search(text),
   };
 
   return {
@@ -50,41 +46,41 @@ function createSWR(client: RegionsOfIndonesiaClient = new RegionsOfIndonesiaClie
       return useSWR(key.provinces, fetcher.provinces);
     },
     useProvince(code: string) {
-      return useSWR(createCallbackIfNotEmptyStringOrNull(code, key.province), fetcher.province);
+      return useSWR(getValidKey(code, key.province), fetcher.province);
     },
     useDistricts(provinceCode: string) {
-      return useSWR(createCallbackIfNotEmptyStringOrNull(provinceCode, key.districts), fetcher.districts);
+      return useSWR(getValidKey(provinceCode, key.districts), fetcher.districts);
     },
     useDistrict(code: string) {
-      return useSWR(createCallbackIfNotEmptyStringOrNull(code, key.district), fetcher.district);
+      return useSWR(getValidKey(code, key.district), fetcher.district);
     },
     useSubdistricts(districtCode: string) {
-      return useSWR(createCallbackIfNotEmptyStringOrNull(districtCode, key.subdistricts), fetcher.subdistricts);
+      return useSWR(getValidKey(districtCode, key.subdistricts), fetcher.subdistricts);
     },
     useSubdistrict(code: string) {
-      return useSWR(createCallbackIfNotEmptyStringOrNull(code, key.subdistrict), fetcher.subdistrict);
+      return useSWR(getValidKey(code, key.subdistrict), fetcher.subdistrict);
     },
     useVillages(subdistrictCode: string) {
-      return useSWR(createCallbackIfNotEmptyStringOrNull(subdistrictCode, key.villages), fetcher.villages);
+      return useSWR(getValidKey(subdistrictCode, key.villages), fetcher.villages);
     },
     useVillage(code: string) {
-      return useSWR(createCallbackIfNotEmptyStringOrNull(code, key.village), fetcher.village);
+      return useSWR(getValidKey(code, key.village), fetcher.village);
     },
 
     useSearch(text: string) {
-      return useSWR(createCallbackIfNotEmptyStringOrNull(text, key.search), fetcher.search);
+      return useSWR(getValidKey(text, key.search), fetcher.search);
     },
     useSearchProvinces(text: string) {
-      return useSWR(createCallbackIfNotEmptyStringOrNull(text, key.searchProvinces), fetcher.searchProvinces);
+      return useSWR(getValidKey(text, key.searchProvinces), fetcher.searchProvinces);
     },
     useSearchDistricts(text: string) {
-      return useSWR(createCallbackIfNotEmptyStringOrNull(text, key.searchDistricts), fetcher.searchDistricts);
+      return useSWR(getValidKey(text, key.searchDistricts), fetcher.searchDistricts);
     },
     useSearchSubdistricts(text: string) {
-      return useSWR(createCallbackIfNotEmptyStringOrNull(text, key.searchSubdistricts), fetcher.searchSubdistricts);
+      return useSWR(getValidKey(text, key.searchSubdistricts), fetcher.searchSubdistricts);
     },
     useSearchVillages(text: string) {
-      return useSWR(createCallbackIfNotEmptyStringOrNull(text, key.searchVillages), fetcher.searchVillages);
+      return useSWR(getValidKey(text, key.searchVillages), fetcher.searchVillages);
     },
   };
 }

@@ -1199,10 +1199,10 @@
   resolved "https://registry.yarnpkg.com/@polka/url/-/url-1.0.0-next.21.tgz#5de5a2385a35309427f6011992b544514d559aa1"
   integrity sha512-a5Sab1C4/icpTZVzZc5Ghpz88yQtGOyNqYXcZgOssB2uuAr+wF/MvN6bgtW32q7HHrvBki+BsZ0OuNv6EV3K9g==
 
-"@regions-of-indonesia/client@^2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@regions-of-indonesia/client/-/client-2.1.0.tgz#7a69901607877f45e43e5c883d3824841d7f799c"
-  integrity sha512-ric/+EJ7ghAwvv8bT+/WVuintsolWYo7N8PeCXER7nGmqd9CIpQ0PPrx4yHoDo6WueAWwTNNdytgjq0AfWRD0g==
+"@regions-of-indonesia/client@^2.2.0":
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/@regions-of-indonesia/client/-/client-2.2.0.tgz#2103944be801052278a8fbdcf1a152c1c4f56d32"
+  integrity sha512-wtKboRqUkrGmw1WRWU1zjYHNiKlDi0mSHrhoo1YTGgvRFVvckPRcvzxVFAwjcGrk41B4MApkgQgQw1/cjGDkjA==
 
 "@rollup/plugin-alias@^3.1.1":
   version "3.1.9"
