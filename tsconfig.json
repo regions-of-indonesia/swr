@@ -10,6 +10,8 @@
     "removeComments": true,
     "jsx": "react",
     "jsxFactory": "React.createElement",
-    "jsxFragmentFactory": "React.Fragment"
+    "jsxFragmentFactory": "React.Fragment",
+    "strict": true,
+    "forceConsistentCasingInFileNames": true
   }
 }

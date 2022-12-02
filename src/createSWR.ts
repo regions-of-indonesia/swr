@@ -2,8 +2,12 @@ import { RegionsOfIndonesiaClient } from "@regions-of-indonesia/client";
 
 import useSWR from "swr";
 
+function isKey(value: unknown): value is string {
+  return typeof value === "string" && value !== "";
+}
+
 function getValidKey<T>(value: unknown, callback: (value: string) => T) {
-  return () => (typeof value === "string" && value !== "" ? callback(value) : null);
+  return () => (isKey(value) ? callback(value) : null);
 }
 
 function createSWR(client: RegionsOfIndonesiaClient = new RegionsOfIndonesiaClient()) {
@@ -45,41 +49,41 @@ function createSWR(client: RegionsOfIndonesiaClient = new RegionsOfIndonesiaClie
     useProvinces() {
       return useSWR(key.provinces, fetcher.provinces);
     },
-    useProvince(code: string) {
+    useProvince(code?: string) {
       return useSWR(getValidKey(code, key.province), fetcher.province);
     },
-    useDistricts(provinceCode: string) {
+    useDistricts(provinceCode?: string) {
       return useSWR(getValidKey(provinceCode, key.districts), fetcher.districts);
     },
-    useDistrict(code: string) {
+    useDistrict(code?: string) {
       return useSWR(getValidKey(code, key.district), fetcher.district);
     },
-    useSubdistricts(districtCode: string) {
+    useSubdistricts(districtCode?: string) {
       return useSWR(getValidKey(districtCode, key.subdistricts), fetcher.subdistricts);
     },
-    useSubdistrict(code: string) {
+    useSubdistrict(code?: string) {
       return useSWR(getValidKey(code, key.subdistrict), fetcher.subdistrict);
     },
-    useVillages(subdistrictCode: string) {
+    useVillages(subdistrictCode?: string) {
       return useSWR(getValidKey(subdistrictCode, key.villages), fetcher.villages);
     },
-    useVillage(code: string) {
+    useVillage(code?: string) {
       return useSWR(getValidKey(code, key.village), fetcher.village);
     },
 
-    useSearch(text: string) {
+    useSearch(text?: string) {
       return useSWR(getValidKey(text, key.search), fetcher.search);
     },
-    useSearchProvinces(text: string) {
+    useSearchProvinces(text?: string) {
       return useSWR(getValidKey(text, key.searchProvinces), fetcher.searchProvinces);
     },
-    useSearchDistricts(text: string) {
+    useSearchDistricts(text?: string) {
       return useSWR(getValidKey(text, key.searchDistricts), fetcher.searchDistricts);
     },
-    useSearchSubdistricts(text: string) {
+    useSearchSubdistricts(text?: string) {
       return useSWR(getValidKey(text, key.searchSubdistricts), fetcher.searchSubdistricts);
     },
-    useSearchVillages(text: string) {
+    useSearchVillages(text?: string) {
       return useSWR(getValidKey(text, key.searchVillages), fetcher.searchVillages);
     },
   };
