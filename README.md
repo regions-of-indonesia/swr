@@ -6,6 +6,8 @@
   <a href="https://indonesia-api.netlify.app/regions-of-indonesia"><img src="https://raw.githubusercontent.com/indonesia-api/indonesia-api/main/public/Badge.svg?sanitize=true" /></a>
 </p>
 
+<img src="https://hiiits.deno.dev/hit/regions-of-indonesia/swr?" width="100%" heigth="10px" />
+
 # Regions of Indonesia SWR
 
 Regions of Indonesia SWR
@@ -18,6 +20,8 @@ Install
 npm install @regions-of-indonesia/swr
 # or
 yarn add @regions-of-indonesia/swr
+# or
+pnpm add @regions-of-indonesia/swr
 ```
 
 Usage
