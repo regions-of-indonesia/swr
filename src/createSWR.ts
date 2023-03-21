@@ -2,6 +2,8 @@ import { RegionsOfIndonesiaClient } from "@regions-of-indonesia/client";
 
 import useSWR from "swr";
 
+type QueryKey = [string, string];
+
 const isKey = (value: unknown): value is string => typeof value === "string" && value !== "",
   getValidKey =
     <T>(value: unknown, callback: (value: string) => T) =>
@@ -27,19 +29,19 @@ const createSWR = (client: RegionsOfIndonesiaClient = new RegionsOfIndonesiaClie
     },
     fetcher = {
       provinces: () => client.province.find(),
-      province: (_path: string, code: string) => client.province.findByCode(code),
+      province: ([_path, code]: QueryKey) => client.province.findByCode(code),
       districts: (_path: string, provinceCode: string) => client.district.findByProvinceCode(provinceCode),
-      district: (_path: string, code: string) => client.district.findByCode(code),
+      district: ([_path, code]: QueryKey) => client.district.findByCode(code),
       subdistricts: (_path: string, districtCode: string) => client.subdistrict.findByDistrictCode(districtCode),
-      subdistrict: (_path: string, code: string) => client.subdistrict.findByCode(code),
+      subdistrict: ([_path, code]: QueryKey) => client.subdistrict.findByCode(code),
       villages: (_path: string, subdistrictCode: string) => client.village.findBySubdistrictCode(subdistrictCode),
-      village: (_path: string, code: string) => client.village.findByCode(code),
+      village: ([_path, code]: QueryKey) => client.village.findByCode(code),
 
-      search: (_path: string, name: string) => client.search(name),
-      searchProvinces: (_path: string, name: string) => client.province.search(name),
-      searchDistricts: (_path: string, name: string) => client.district.search(name),
-      searchSubdistricts: (_path: string, name: string) => client.subdistrict.search(name),
-      searchVillages: (_path: string, name: string) => client.village.search(name),
+      search: ([_path, name]: QueryKey) => client.search(name),
+      searchProvinces: ([_path, name]: QueryKey) => client.province.search(name),
+      searchDistricts: ([_path, name]: QueryKey) => client.district.search(name),
+      searchSubdistricts: ([_path, name]: QueryKey) => client.subdistrict.search(name),
+      searchVillages: ([_path, name]: QueryKey) => client.village.search(name),
     };
 
   return {
