@@ -4,61 +4,76 @@ import useSWR from "swr";
 
 type QueryKey = [string, string];
 
-const isKey = (value: unknown): value is string => typeof value === "string" && value !== "",
-  getValidKey =
-    <T>(value: unknown, callback: (value: string) => T) =>
-    () =>
-      isKey(value) ? callback(value) : null;
+const iskey = (value: unknown): value is string => typeof value === "string" && value !== "",
+  validkey = <T>(value: unknown, callback: (value: string) => T) => (iskey(value) ? callback(value) : null);
 
-const createSWR = (client: RegionsOfIndonesiaClient = new RegionsOfIndonesiaClient()) => {
-  const key = {
-      provinces: () => ["provinces"],
-      province: (code: string) => ["province", code],
-      districts: (provinceCode: string) => ["districts", provinceCode],
-      district: (code: string) => ["district", code],
-      subdistricts: (districtCode: string) => ["subdistricts", districtCode],
-      subdistrict: (code: string) => ["subdistrict", code],
-      villages: (subdistrictCode: string) => ["villages", subdistrictCode],
-      village: (code: string) => ["village", code],
+const createSWR = (client: RegionsOfIndonesiaClient = new RegionsOfIndonesiaClient(), options: { name?: string } = {}) => {
+  const { name = "regions-of-indonesia" } = options,
+    named = (value: string) => (typeof name === "string" ? [name, value].join("/") : value),
+    keyname = {
+      ps: named("provinces"),
+      p: named("province"),
+      ds: named("districts"),
+      d: named("district"),
+      ss: named("subdistricts"),
+      s: named("subdistrict"),
+      vs: named("villages"),
+      v: named("village"),
 
-      search: (name: string) => ["search", name],
-      searchProvinces: (name: string) => ["search/provinces", name],
-      searchDistricts: (name: string) => ["search/districts", name],
-      searchSubdistricts: (name: string) => ["search/subdistricts", name],
-      searchVillages: (name: string) => ["search/villages", name],
+      f: named("search"),
+      fP: named("search/provinces"),
+      fD: named("search/districts"),
+      fS: named("search/subdistricts"),
+      fV: named("search/villages"),
+    },
+    key = {
+      ps: () => [keyname.ps],
+      p: (code: string) => [keyname.p, code],
+      ds: (provinceCode: string) => [keyname.ds, provinceCode],
+      d: (code: string) => [keyname.d, code],
+      ss: (districtCode: string) => [keyname.ss, districtCode],
+      s: (code: string) => [keyname.s, code],
+      vs: (subdistrictCode: string) => [keyname.vs, subdistrictCode],
+      v: (code: string) => [keyname.v, code],
+
+      f: (name: string) => [keyname.f, name],
+      fP: (name: string) => [keyname.fP, name],
+      fD: (name: string) => [keyname.fD, name],
+      fS: (name: string) => [keyname.fS, name],
+      fV: (name: string) => [keyname.fV, name],
     },
     fetcher = {
-      provinces: () => client.province.find(),
-      province: ([_path, code]: QueryKey) => client.province.findByCode(code),
-      districts: (_path: string, provinceCode: string) => client.district.findByProvinceCode(provinceCode),
-      district: ([_path, code]: QueryKey) => client.district.findByCode(code),
-      subdistricts: (_path: string, districtCode: string) => client.subdistrict.findByDistrictCode(districtCode),
-      subdistrict: ([_path, code]: QueryKey) => client.subdistrict.findByCode(code),
-      villages: (_path: string, subdistrictCode: string) => client.village.findBySubdistrictCode(subdistrictCode),
-      village: ([_path, code]: QueryKey) => client.village.findByCode(code),
+      ps: () => client.province.find(),
+      p: ([_, code]: QueryKey) => client.province.findByCode(code),
+      ds: ([_, provinceCode]: QueryKey) => client.district.findByProvinceCode(provinceCode),
+      d: ([_, code]: QueryKey) => client.district.findByCode(code),
+      ss: ([_, districtCode]: QueryKey) => client.subdistrict.findByDistrictCode(districtCode),
+      s: ([_, code]: QueryKey) => client.subdistrict.findByCode(code),
+      vs: ([_, subdistrictCode]: QueryKey) => client.village.findBySubdistrictCode(subdistrictCode),
+      v: ([_, code]: QueryKey) => client.village.findByCode(code),
 
-      search: ([_path, name]: QueryKey) => client.search(name),
-      searchProvinces: ([_path, name]: QueryKey) => client.province.search(name),
-      searchDistricts: ([_path, name]: QueryKey) => client.district.search(name),
-      searchSubdistricts: ([_path, name]: QueryKey) => client.subdistrict.search(name),
-      searchVillages: ([_path, name]: QueryKey) => client.village.search(name),
+      f: ([_, name]: QueryKey) => client.search(name),
+      fP: ([_, name]: QueryKey) => client.province.search(name),
+      fD: ([_, name]: QueryKey) => client.district.search(name),
+      fS: ([_, name]: QueryKey) => client.subdistrict.search(name),
+      fV: ([_, name]: QueryKey) => client.village.search(name),
     };
 
   return {
-    useProvinces: () => useSWR(key.provinces, fetcher.provinces),
-    useProvince: (code?: string) => useSWR(getValidKey(code, key.province), fetcher.province),
-    useDistricts: (provinceCode?: string) => useSWR(getValidKey(provinceCode, key.districts), fetcher.districts),
-    useDistrict: (code?: string) => useSWR(getValidKey(code, key.district), fetcher.district),
-    useSubdistricts: (districtCode?: string) => useSWR(getValidKey(districtCode, key.subdistricts), fetcher.subdistricts),
-    useSubdistrict: (code?: string) => useSWR(getValidKey(code, key.subdistrict), fetcher.subdistrict),
-    useVillages: (subdistrictCode?: string) => useSWR(getValidKey(subdistrictCode, key.villages), fetcher.villages),
-    useVillage: (code?: string) => useSWR(getValidKey(code, key.village), fetcher.village),
+    useProvinces: () => useSWR(key.ps, fetcher.ps),
+    useProvince: (code?: string) => useSWR(validkey(code, key.p), fetcher.p),
+    useDistricts: (provinceCode?: string) => useSWR(validkey(provinceCode, key.ds), fetcher.ds),
+    useDistrict: (code?: string) => useSWR(validkey(code, key.d), fetcher.d),
+    useSubdistricts: (districtCode?: string) => useSWR(validkey(districtCode, key.ss), fetcher.ss),
+    useSubdistrict: (code?: string) => useSWR(validkey(code, key.s), fetcher.s),
+    useVillages: (subdistrictCode?: string) => useSWR(validkey(subdistrictCode, key.vs), fetcher.vs),
+    useVillage: (code?: string) => useSWR(validkey(code, key.v), fetcher.v),
 
-    useSearch: (name?: string) => useSWR(getValidKey(name, key.search), fetcher.search),
-    useSearchProvinces: (name?: string) => useSWR(getValidKey(name, key.searchProvinces), fetcher.searchProvinces),
-    useSearchDistricts: (name?: string) => useSWR(getValidKey(name, key.searchDistricts), fetcher.searchDistricts),
-    useSearchSubdistricts: (name?: string) => useSWR(getValidKey(name, key.searchSubdistricts), fetcher.searchSubdistricts),
-    useSearchVillages: (name?: string) => useSWR(getValidKey(name, key.searchVillages), fetcher.searchVillages),
+    useSearch: (name?: string) => useSWR(validkey(name, key.f), fetcher.f),
+    useSearchProvinces: (name?: string) => useSWR(validkey(name, key.fP), fetcher.fP),
+    useSearchDistricts: (name?: string) => useSWR(validkey(name, key.fD), fetcher.fD),
+    useSearchSubdistricts: (name?: string) => useSWR(validkey(name, key.fS), fetcher.fS),
+    useSearchVillages: (name?: string) => useSWR(validkey(name, key.fV), fetcher.fV),
   };
 };
 

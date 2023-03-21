@@ -52,14 +52,15 @@ describe("Create SWR", () => {
   it("Component", async () => {
     const { getByTestId } = render(<Component />);
 
-    await delay(1000);
+    const expects = (name: string, codes: string[]) => {
+      const elements = codes.map((code) => getByTestId(`${name}-${code}`));
+      for (let i = 0; i < elements.length; i++) expect(elements[i]).toBeDefined();
+    };
 
-    const code11 = getByTestId("code-11");
-    const code12 = getByTestId("code-12");
-    const code13 = getByTestId("code-13");
-
-    expect(code11).toBeDefined();
-    expect(code12).toBeDefined();
-    expect(code13).toBeDefined();
+    await delay(2000);
+    expects("province", ["11", "12", "13"]);
+    expects("district", ["11.01", "11.02", "11.03"]);
+    expects("subdistrict", ["11.01.01", "11.01.02", "11.01.03"]);
+    expects("village", ["11.01.01.2001", "11.01.01.2002", "11.01.01.2003"]);
   });
 });
