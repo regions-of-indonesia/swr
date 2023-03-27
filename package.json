@@ -1,6 +1,6 @@
 {
   "name": "@regions-of-indonesia/swr",
-  "version": "2.5.0",
+  "version": "2.5.1",
   "description": "Regions of Indonesia SWR",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
