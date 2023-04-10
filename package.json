@@ -39,22 +39,26 @@
     "react",
     "swr"
   ],
-  "dependencies": {
-    "@regions-of-indonesia/client": "^3.0.0",
+  "peerDependencies": {
+    "@regions-of-indonesia/client": "^4.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "swr": "^2.1.0"
+    "swr": "^2.1.2"
   },
   "devDependencies": {
+    "@regions-of-indonesia/client": "^4.0.0",
     "@testing-library/react": "^14.0.0",
-    "@types/react": "^18.0.28",
+    "@types/react": "^18.0.33",
     "@types/react-dom": "^18.0.11",
     "@vitest/ui": "^0.29.7",
     "javascript-yesterday": "^1.2.0",
     "jsdom": "^21.1.1",
     "microbundle": "^0.15.1",
     "node-fetch": "^3.3.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "release-it": "^15.9.0",
+    "swr": "^2.1.2",
     "vitest": "^0.29.7"
   }
 }

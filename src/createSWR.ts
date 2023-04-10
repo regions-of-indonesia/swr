@@ -1,4 +1,4 @@
-import { RegionsOfIndonesiaClient } from "@regions-of-indonesia/client";
+import { create } from "@regions-of-indonesia/client";
 
 import useSWR from "swr";
 
@@ -7,7 +7,7 @@ type QueryKey = [string, string];
 const iskey = (value: unknown): value is string => typeof value === "string" && value !== "",
   validkey = <T>(value: unknown, callback: (value: string) => T) => (iskey(value) ? callback(value) : null);
 
-const createSWR = (client: RegionsOfIndonesiaClient = new RegionsOfIndonesiaClient(), options: { name?: string } = {}) => {
+const createSWR = (client: ReturnType<typeof create> = create(), options: { name?: string } = {}) => {
   const { name = "regions-of-indonesia" } = options,
     named = (value: string) => (typeof name === "string" ? [name, value].join("/") : value),
     keyname = {
@@ -44,13 +44,13 @@ const createSWR = (client: RegionsOfIndonesiaClient = new RegionsOfIndonesiaClie
     },
     fetcher = {
       ps: () => client.province.find(),
-      p: ([_, code]: QueryKey) => client.province.findByCode(code),
-      ds: ([_, provinceCode]: QueryKey) => client.district.findByProvinceCode(provinceCode),
-      d: ([_, code]: QueryKey) => client.district.findByCode(code),
-      ss: ([_, districtCode]: QueryKey) => client.subdistrict.findByDistrictCode(districtCode),
-      s: ([_, code]: QueryKey) => client.subdistrict.findByCode(code),
-      vs: ([_, subdistrictCode]: QueryKey) => client.village.findBySubdistrictCode(subdistrictCode),
-      v: ([_, code]: QueryKey) => client.village.findByCode(code),
+      p: ([_, code]: QueryKey) => client.province.find.by(code),
+      ds: ([_, provinceCode]: QueryKey) => client.district.find(provinceCode),
+      d: ([_, code]: QueryKey) => client.district.find.by(code),
+      ss: ([_, districtCode]: QueryKey) => client.subdistrict.find(districtCode),
+      s: ([_, code]: QueryKey) => client.subdistrict.find.by(code),
+      vs: ([_, subdistrictCode]: QueryKey) => client.village.find(subdistrictCode),
+      v: ([_, code]: QueryKey) => client.village.find.by(code),
 
       f: ([_, name]: QueryKey) => client.search(name),
       fP: ([_, name]: QueryKey) => client.province.search(name),
@@ -77,4 +77,4 @@ const createSWR = (client: RegionsOfIndonesiaClient = new RegionsOfIndonesiaClie
   };
 };
 
-export default createSWR;
+export { createSWR };
