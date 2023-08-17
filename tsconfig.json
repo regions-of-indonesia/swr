@@ -1,17 +1,18 @@
 {
   "compilerOptions": {
-    "module": "ESNext",
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
     "target": "ESNext",
-    "moduleResolution": "node",
-    "isolatedModules": true,
+    "module": "ESNext",
+    "skipLibCheck": true,
     "noUnusedLocals": true,
+    "isolatedModules": true,
+    "moduleResolution": "node",
     "noUnusedParameters": true,
     "allowSyntheticDefaultImports": true,
-    "removeComments": true,
-    "jsx": "react",
-    "jsxFactory": "React.createElement",
-    "jsxFragmentFactory": "React.Fragment",
-    "strict": true,
-    "forceConsistentCasingInFileNames": true
-  }
+    "jsx": "react-jsx",
+    "jsxImportSource": "react"
+  },
+  "include": ["src", "test"],
+  "exclude": ["node_modules", "dist"]
 }

@@ -1,64 +1,53 @@
 {
   "name": "@regions-of-indonesia/swr",
   "version": "4.0.0",
-  "description": "Regions of Indonesia SWR",
-  "main": "./dist/index.js",
+  "type": "module",
+  "main": "./dist/index.cjs",
   "types": "./dist/index.d.ts",
-  "module": "./dist/index.modern.mjs",
   "exports": {
-    "require": "./dist/index.js",
-    "default": "./dist/index.modern.mjs"
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.cjs"
+      }
+    }
   },
   "files": [
     "dist"
   ],
+  "private": false,
+  "repository": "https://github.com/regions-of-indonesia/swr.git",
+  "author": {
+    "name": "flamrdevs",
+    "url": "https://github.com/flamrdevs"
+  },
+  "license": "GPL-3.0",
   "scripts": {
     "test": "vitest run",
-    "test-ui": "vitest --ui",
-    "build": "microbundle src/index.ts --format modern,cjs --sourcemap false",
-    "prerelease": "yarn run test && yarn run build",
-    "release": "release-it --only-version"
-  },
-  "repository": "https://github.com/regions-of-indonesia/swr.git",
-  "author": "flamrdevs <flamrdevs@gmail.com>",
-  "homepage": "https://regions-of-indonesia.netlify.app",
-  "license": "GPL-3.0",
-  "private": false,
-  "keywords": [
-    "api",
-    "library",
-    "open-source",
-    "javascript",
-    "typescript",
-    "indonesia",
-    "region",
-    "daerah",
-    "wilayah",
-    "wilayah-indonesia",
-    "regions-of-indonesia",
-    "react",
-    "swr"
-  ],
-  "peerDependencies": {
-    "@regions-of-indonesia/client": "^4.0.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "swr": "^2.1.2"
+    "test:ui": "vitest --ui",
+    "build": "vite build",
+    "release": "pnpm test && pnpm build && release-it"
   },
   "devDependencies": {
-    "@regions-of-indonesia/client": "^4.0.0",
+    "@regions-of-indonesia/client": "5.0.2",
+    "@regions-of-indonesia/types": "5.0.1",
+    "@regions-of-indonesia/utils": "^5.0.1",
     "@testing-library/react": "^14.0.0",
-    "@types/react": "^18.0.33",
-    "@types/react-dom": "^18.0.11",
-    "@vitest/ui": "^0.29.7",
-    "javascript-yesterday": "^1.2.0",
-    "jsdom": "^21.1.1",
-    "microbundle": "^0.15.1",
-    "node-fetch": "^3.3.1",
+    "@types/react": "^18.2.18",
+    "@types/react-dom": "^18.2.7",
+    "@vitejs/plugin-react": "^4.0.4",
+    "@vitest/ui": "^0.31.1",
+    "jsdom": "^22.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "release-it": "^15.9.0",
-    "swr": "^2.1.2",
-    "vitest": "^0.29.7"
+    "release-it": "^15.10.3",
+    "swr": "^2.2.1",
+    "vite": "^4.3.9",
+    "vite-plugin-dts": "^2.3.0",
+    "vitest": "^0.31.1"
   }
 }
