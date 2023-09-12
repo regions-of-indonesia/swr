@@ -1,3 +1,4 @@
+export type * from "@regions-of-indonesia/types";
 import type { Client } from "@regions-of-indonesia/client";
 
 import useSWR from "swr";
@@ -58,7 +59,7 @@ const create = (client: Client) => {
     useSearchSubdistricts: (name: string) =>
       useSWR(() => (isName(name) ? [name_search, name, str_subdistricts] : null), fetcher_search_subdistricts),
     useSearchVillages: (name: string) => useSWR(() => (isName(name) ? [name_search, name, str_villages] : null), fetcher_search_villages),
-  };
+  } as const;
 };
 
 export { create };
