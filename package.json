@@ -33,21 +33,21 @@
     "release": "pnpm test && pnpm build && release-it"
   },
   "devDependencies": {
-    "@regions-of-indonesia/client": "5.0.2",
-    "@regions-of-indonesia/types": "5.0.1",
-    "@regions-of-indonesia/utils": "^5.0.1",
+    "@regions-of-indonesia/client": "5.2.0",
+    "@regions-of-indonesia/types": "5.1.0",
+    "@regions-of-indonesia/utils": "^5.1.0",
     "@testing-library/react": "^14.0.0",
-    "@types/react": "^18.2.18",
+    "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",
     "@vitejs/plugin-react": "^4.0.4",
-    "@vitest/ui": "^0.31.1",
+    "@vitest/ui": "^0.34.4",
     "jsdom": "^22.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "release-it": "^15.10.3",
-    "swr": "^2.2.1",
-    "vite": "^4.3.9",
-    "vite-plugin-dts": "^2.3.0",
-    "vitest": "^0.31.1"
+    "release-it": "^16.1.5",
+    "swr": "^2.2.2",
+    "vite": "^4.4.9",
+    "vite-plugin-dts": "^3.5.3",
+    "vitest": "^0.34.4"
   }
 }
