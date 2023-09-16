@@ -2,14 +2,14 @@ lockfileVersion: '6.0'
 
 devDependencies:
   '@regions-of-indonesia/client':
-    specifier: 5.2.0
-    version: 5.2.0
+    specifier: 5.2.1
+    version: 5.2.1
   '@regions-of-indonesia/types':
-    specifier: 5.1.0
-    version: 5.1.0
+    specifier: 5.1.1
+    version: 5.1.1
   '@regions-of-indonesia/utils':
-    specifier: ^5.1.0
-    version: 5.1.0
+    specifier: ^5.1.1
+    version: 5.1.1
   '@testing-library/react':
     specifier: ^14.0.0
     version: 14.0.0(react-dom@18.2.0)(react@18.2.0)
@@ -800,20 +800,20 @@ packages:
     resolution: {integrity: sha512-C16M+IYz0rgRhWZdCmK+h58JMv8vijAA61gmz2rspCSwKwzBebpdcsiUmwrtJRdphuY30i6BSLEOP8ppbNLyLg==}
     dev: true
 
-  /@regions-of-indonesia/client@5.2.0:
-    resolution: {integrity: sha512-OvOWTGKuRzpUIYZL3Qq9+Dw3cYMzpU0D/SCOnyALFLJk/D4z/K5ST/Q00eoHfkJRyQBYFUsLUpuVWV4OLcyZjA==}
+  /@regions-of-indonesia/client@5.2.1:
+    resolution: {integrity: sha512-kJ1KnFv+dPD4aQziIUcyHGHSUvQvtaQelhycdJB5/gguG7oQpPTFzMK1wZDrbgycTsoAJzJ1gUOtXhE3E9b3ew==}
     dependencies:
-      '@regions-of-indonesia/types': 5.1.0
+      '@regions-of-indonesia/types': 5.1.1
     dev: true
 
-  /@regions-of-indonesia/types@5.1.0:
-    resolution: {integrity: sha512-CcpxM0//cxzY7IhDvHZ0N//gUQ2qIhCEkpV/y85Ml/TwLedJNwYI6ATlAsnJ287Nhx3h0cXcah9NOmZxL30lxA==}
+  /@regions-of-indonesia/types@5.1.1:
+    resolution: {integrity: sha512-uSd6ZHkE1Do9w49aaZaeNSrcj8Kb6DmStbceMzzrSuAX6zHLRQmAAwxym6+OLulwVv3ZCqUb7TyKwfmlb/j5Nw==}
     dev: true
 
-  /@regions-of-indonesia/utils@5.1.0:
-    resolution: {integrity: sha512-5ZAG2OuSNYfkIglzAiFwKifh40Y6eal3R3z9JJNaRpL2a0G8AerJOkrR8fKVFowwTZS0n6E2OyRQnUnqaEkNJQ==}
+  /@regions-of-indonesia/utils@5.1.1:
+    resolution: {integrity: sha512-XzNAs/f6thOdcY7hiQvKBHVONHyGOJpWfgGF+BnwQGFHudf68YhDDvrn+gbWzm+8ZiNWoT4oOrKTvl79c8kMsg==}
     dependencies:
-      '@regions-of-indonesia/types': 5.1.0
+      '@regions-of-indonesia/types': 5.1.1
     dev: true
 
   /@rollup/pluginutils@5.0.4:

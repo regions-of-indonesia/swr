@@ -41,9 +41,9 @@
     "swr": "^2.0.0"
   },
   "devDependencies": {
-    "@regions-of-indonesia/client": "5.2.0",
-    "@regions-of-indonesia/types": "5.1.0",
-    "@regions-of-indonesia/utils": "^5.1.0",
+    "@regions-of-indonesia/client": "5.2.1",
+    "@regions-of-indonesia/types": "5.1.1",
+    "@regions-of-indonesia/utils": "^5.1.1",
     "@testing-library/react": "^14.0.0",
     "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",
