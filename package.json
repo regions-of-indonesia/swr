@@ -41,21 +41,21 @@
     "swr": "^2.0.0"
   },
   "devDependencies": {
-    "@regions-of-indonesia/client": "5.2.1",
-    "@regions-of-indonesia/types": "5.1.1",
-    "@regions-of-indonesia/utils": "^5.1.1",
+    "@regions-of-indonesia/client": "5.2.2",
+    "@regions-of-indonesia/types": "5.1.2",
+    "@regions-of-indonesia/utils": "^5.1.2",
     "@testing-library/react": "^14.0.0",
-    "@types/react": "^18.2.21",
-    "@types/react-dom": "^18.2.7",
-    "@vitejs/plugin-react": "^4.0.4",
-    "@vitest/ui": "^0.34.4",
+    "@types/react": "^18.2.28",
+    "@types/react-dom": "^18.2.13",
+    "@vitejs/plugin-react": "^4.1.0",
+    "@vitest/ui": "^0.34.6",
     "jsdom": "^22.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "release-it": "^16.1.5",
-    "swr": "^2.2.2",
-    "vite": "^4.4.9",
-    "vite-plugin-dts": "^3.5.3",
-    "vitest": "^0.34.4"
+    "release-it": "^16.2.1",
+    "swr": "^2.2.4",
+    "vite": "^4.4.11",
+    "vite-plugin-dts": "^3.6.0",
+    "vitest": "^0.34.6"
   }
 }
