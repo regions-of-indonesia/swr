@@ -38,7 +38,7 @@
   },
   "peerDependencies": {
     "@regions-of-indonesia/client": "5.2.0",
-    "swr": "^2.0.0"
+    "swr": "^2.2.0"
   },
   "devDependencies": {
     "@regions-of-indonesia/client": "5.2.2",
