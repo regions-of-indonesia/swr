@@ -9,10 +9,16 @@
       <img alt="license" src="https://none.deno.dev/npm/l/@regions-of-indonesia/swr" hspace="1">
     </picture>
   </a>
-  <a title="version" href="https://www.npmjs.com/package/@regions-of-indonesia/swr/v/next">
+  <a title="version" href="https://www.npmjs.com/package/@regions-of-indonesia/swr">
     <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/ui/badge?c=orange&t=dark&e=alpha">
-      <img alt="version" src="https://none.deno.dev/ui/badge?c=orange&t=light&e=alpha" hspace="1">
+      <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/npm/v/@regions-of-indonesia/swr">
+      <img alt="version" src="https://none.deno.dev/npm/v/@regions-of-indonesia/swr" hspace="1">
+    </picture>
+  </a>
+  <a title="size" href="https://bundlejs.com/?q=@regions-of-indonesia/swr">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://none.deno.dev/bundlejs/mz/@regions-of-indonesia/swr">
+      <img alt="size" src="https://none.deno.dev/bundlejs/mz/@regions-of-indonesia/swr" hspace="1">
     </picture>
   </a>
 </p>
